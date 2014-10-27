@@ -1,0 +1,94 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login.live.com/accesstoken.srf
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&scope=notify.windows.com&client_id=test&client_secret=secret
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - login.live.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '444'
+      Content-Type:
+      - application/json
+      Server:
+      - Microsoft-IIS/7.5
+      Ppserver:
+      - 'PPV: 30 H: BAYIDSLGN1A015 V: 0'
+      Date:
+      - Mon, 27 Oct 2014 16:48:34 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"acces_token","expires_in":86400}'
+    http_version:
+  recorded_at: Mon, 27 Oct 2014 16:48:34 GMT
+- request:
+    method: post
+    uri: https://db3.notify.windows.com/?token=token
+    body:
+      encoding: UTF-8
+      string: <toast launch=""><visual lang="en-US"><binding template="ToastImageAndText01"><image
+        id="1" src="World" /><text id="1">Hello</text></binding></visual></toast>
+    headers:
+      Authorization:
+      - Bearer access_token
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '158'
+      X-Wns-Requestforstatus:
+      - 'true'
+      X-Wns-Type:
+      - wns/toast
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '0'
+      X-Wns-Deviceconnectionstatus:
+      - connected
+      X-Wns-Notificationstatus:
+      - received
+      X-Wns-Status:
+      - received
+      X-Wns-Msg-Id:
+      - 402E73F068974F89
+      X-Wns-Debug-Trace:
+      - DB3WNS4011733
+      Date:
+      - Mon, 27 Oct 2014 16:48:34 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Mon, 27 Oct 2014 16:48:35 GMT
+recorded_with: VCR 2.9.3
