@@ -19,19 +19,15 @@ module Pushr
         end
 
         def expired?
-          @expires_in > Time.now
+          Time.now > @expires_in
         end
 
         def request_token
           uri = URI('https://login.live.com/accesstoken.srf')
           response = Net::HTTP.post_form(uri, params)
-          puts response.inspect
-          puts response.body
-          puts response.code.inspect
           response_hsh = MultiJson.load(response.body)
-          if response.code != '200'
-            puts "#{response.code.inspect} != #{'200'.inspect}"
-            fail AuthenticationError.new(response_hsh['error_description'])
+          if response.code.to_i != 200
+            fail AuthenticationError, response_hsh['error_description']
           else
             process_response(response_hsh)
           end
@@ -40,7 +36,6 @@ module Pushr
         def process_response(params)
           @expires_in = Time.now + params['expires_in']
           @access_token = params['access_token']
-          puts "expires in: #{@expires_in} token: #{@access_token}"
         end
 
         def params

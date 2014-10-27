@@ -16,7 +16,6 @@ module Pushr
         end
 
         def write(message)
-          puts "writing message: #{message.inspect}"
           response = notification_request(message)
           handle_response(response) unless response.code.eql? '200'
         end
