@@ -24,13 +24,21 @@ module Pushr
 
         def request_token
           uri = URI('https://login.live.com/accesstoken.srf')
-          response = Net::HTTP.post_form(uri, params)
+          request = Net::HTTP::Post.new(uri.request_uri)
+          request.set_form_data(params)
+          response = http(uri).request(request)
           response_hsh = MultiJson.load(response.body)
           if response.code.to_i != 200
             fail AuthenticationError, response_hsh['error_description']
           else
             process_response(response_hsh)
           end
+        end
+
+        def http(uri)
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = true
+          http
         end
 
         def process_response(params)
