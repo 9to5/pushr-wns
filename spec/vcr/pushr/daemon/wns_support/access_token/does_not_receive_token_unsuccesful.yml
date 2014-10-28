@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login.live.com/accesstoken.srf
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&scope=notify.windows.com&client_id=invalid_test&client_secret=invalid_secret
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '66'
+      Content-Type:
+      - application/json
+      Server:
+      - Microsoft-IIS/7.5
+      X-Wlid-Error:
+      - '0x80049D59'
+      Ppserver:
+      - 'PPV: 30 H: BAYIDSLGN2E025 V: 0'
+      Date:
+      - Tue, 28 Oct 2014 13:26:38 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client","error_description":"Invalid client id"}'
+    http_version: 
+  recorded_at: Tue, 28 Oct 2014 13:26:38 GMT
+recorded_with: VCR 2.9.3
