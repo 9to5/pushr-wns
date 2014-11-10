@@ -13,7 +13,7 @@ describe Pushr::Daemon::WnsSupport::AccessToken do
     let(:client_id) { 'test' }
     let(:client_secret) { 'secret' }
     it 'succesful', :vcr do
-      expect(subject.get).to eql('acces_token')
+      expect(subject.get).to eql('access_token')
     end
   end
 
