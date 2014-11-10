@@ -15,14 +15,15 @@ describe Pushr::MessageWns do
     end
   end
 
+  let(:message) do
+    hsh = { app: 'app_name', channel_uri: channel_uri,
+            data: '<toast launch=""><visual lang="en-US"><binding template="ToastImageAndText01"><image id="1" '\
+                  'src="World" /><text id="1">Hello</text></binding></visual></toast>',
+            content_type: 'text/xml', x_wns_type: 'wns/toast' }
+    Pushr::MessageWns.new(hsh)
+  end
   describe 'save' do
-    let(:message) do
-      hsh = { app: 'app_name', channel_uri: 'https://db3.notify.windows.com/?token=token',
-              data: '<toast launch=""><visual lang="en-US"><binding template="ToastImageAndText01"><image id="1" '\
-                    'src="World" /><text id="1">Hello</text></binding></visual></toast>',
-              content_type: 'text/xml', x_wns_type: 'wns/toast' }
-      Pushr::MessageWns.new(hsh)
-    end
+    let(:channel_uri) { 'https://db3.notify.windows.com/?token=token' }
 
     it 'should return true' do
       expect(message.save).to eql true
@@ -35,6 +36,14 @@ describe Pushr::MessageWns do
 
     it 'should respond to to_message' do
       expect(message.to_message).to be_kind_of(String)
+    end
+  end
+
+  describe 'validate channel_uri' do
+    let(:channel_uri) { 'https://db3.invalid.domain/?token=token' }
+    it 'should respond to to_message' do
+      expect(message.valid?).to be_falsy
+      expect(message.errors[:channel_uri]).to eql(['channel_uri domain should end with \'notify.windows.com\''])
     end
   end
 end
