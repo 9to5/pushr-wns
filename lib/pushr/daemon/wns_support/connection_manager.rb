@@ -2,11 +2,13 @@ module Pushr
   module Daemon
     module WnsSupport
       class ConnectionManager
+        attr_accessor :name
         def initialize(app_name, access_token, i)
           @pool = {}
           @app_name = app_name
           @access_token = access_token
           @i = i
+          @name = "#{app_name}: ConnectionWns #{i}"
         end
 
         def get(uri)
