@@ -11,10 +11,11 @@ module Pushr
         def initialize(configuration)
           @configuration = configuration
           @expires_in = Time.now
+          @semaphore = Mutex.new
         end
 
         def get
-          request_token if expired? || @access_token.nil?
+          @semaphore.synchronize { request_token if expired? || @access_token.nil? }
           @access_token
         end
 
