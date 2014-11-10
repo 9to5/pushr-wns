@@ -33,7 +33,8 @@ module Pushr
           when 403
             # TODO: retry with new credentials
           when 404, 410
-            # TODO: FEEDBACK
+            Pushr::FeedbackWns.create(app: @app_name, device: message.channel_uri, follow_up: 'delete',
+                                      failed_at: Time.now)
           when 406
             # TODO: Throttle
           end
