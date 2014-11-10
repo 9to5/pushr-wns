@@ -4,20 +4,16 @@ module Pushr
       class ConnectionError < StandardError; end
 
       class ConnectionWns
-        attr_reader :response, :name, :configuration
+        attr_reader :response, :name
 
-        def initialize(configuration, i)
-          @configuration = configuration
-          @access_token = AccessToken.new(@configuration)
-          @name = "#{@configuration.app}: ConnectionWns #{i}"
-        end
-
-        def connect
+        def initialize(app_name, access_token, i)
+          @access_token = access_token
+          @name = "#{app_name}: ConnectionWns #{i}"
         end
 
         def write(message)
           response = notification_request(message)
-          handle_response(response) unless response.code.eql? '200'
+          handle_error_response(response) unless response.code.eql? '200'
         end
 
         private
@@ -28,7 +24,7 @@ module Pushr
           when 403
             # TODO: retry with new credentials
           when 404, 410
-            # TODO: FEEABACK
+            # TODO: FEEDBACK
           when 406
             # TODO: Throttle
           end

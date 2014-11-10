@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://db3.notify.windows.com/?token=token
+    body:
+      encoding: UTF-8
+      string: <toast launch=""><visual lang="en-US"><binding template="ToastImageAndText01"><image
+        id="1" src="World" /><text id="1">Hello</text></binding></visual></toast>
+    headers:
+      Authorization:
+      - Bearer access_token
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '158'
+      X-Wns-Requestforstatus:
+      - 'true'
+      X-Wns-Type:
+      - wns/toast
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Length:
+      - '0'
+      X-Wns-Msg-Id:
+      - 134653306E2E6C61
+      X-Wns-Debug-Trace:
+      - DB3WNS2010730
+      Www-Authenticate:
+      - Bearer error="invalid_request",error_description="Invalid token"
+      Date:
+      - Mon, 10 Nov 2014 10:21:43 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Mon, 10 Nov 2014 10:21:44 GMT
+- request:
+    method: post
+    uri: https://db4.notify.windows.com/?token=token
+    body:
+      encoding: UTF-8
+      string: <toast launch=""><visual lang="en-US"><binding template="ToastImageAndText01"><image
+        id="1" src="World" /><text id="1">Hello</text></binding></visual></toast>
+    headers:
+      Authorization:
+      - Bearer access_token
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '158'
+      X-Wns-Requestforstatus:
+      - 'true'
+      X-Wns-Type:
+      - wns/toast
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Length:
+      - '0'
+      X-Wns-Msg-Id:
+      - 134653306E2E6C61
+      X-Wns-Debug-Trace:
+      - DB3WNS2010730
+      Www-Authenticate:
+      - Bearer error="invalid_request",error_description="Invalid token"
+      Date:
+      - Mon, 10 Nov 2014 10:21:43 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Mon, 10 Nov 2014 10:21:44 GMT
+recorded_with: VCR 2.9.3

@@ -9,10 +9,9 @@ module Pushr
       end
 
       def start
+        access_token = Pushr::Daemon::WnsSupport::AccessToken.new(configuration)
         configuration.connections.times do |i|
-          connection = WnsSupport::ConnectionWns.new(configuration, i + 1)
-          connection.connect
-
+          connection = WnsSupport::ConnectionManager.new(configuration.name, access_token, i + 1)
           handler = MessageHandler.new("pushr:#{configuration.key}", connection, configuration.app, i + 1)
           handler.start
           @handlers << handler
