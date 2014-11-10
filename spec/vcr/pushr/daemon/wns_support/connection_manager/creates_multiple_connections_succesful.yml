@@ -26,24 +26,28 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       Content-Length:
       - '0'
+      X-Wns-Deviceconnectionstatus:
+      - connected
+      X-Wns-Notificationstatus:
+      - received
+      X-Wns-Status:
+      - received
       X-Wns-Msg-Id:
-      - 134653306E2E6C61
+      - 402E73F068974F89
       X-Wns-Debug-Trace:
-      - DB3WNS2010730
-      Www-Authenticate:
-      - Bearer error="invalid_request",error_description="Invalid token"
+      - DB3WNS4011733
       Date:
-      - Mon, 10 Nov 2014 10:21:43 GMT
+      - Mon, 27 Oct 2014 16:48:34 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version:
-  recorded_at: Mon, 10 Nov 2014 10:21:44 GMT
+  recorded_at: Mon, 27 Oct 2014 16:48:35 GMT
 - request:
     method: post
     uri: https://db4.notify.windows.com/?token=token
@@ -70,22 +74,26 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       Content-Length:
       - '0'
+      X-Wns-Deviceconnectionstatus:
+      - connected
+      X-Wns-Notificationstatus:
+      - received
+      X-Wns-Status:
+      - received
       X-Wns-Msg-Id:
-      - 134653306E2E6C61
+      - 402E73F068974F89
       X-Wns-Debug-Trace:
-      - DB3WNS2010730
-      Www-Authenticate:
-      - Bearer error="invalid_request",error_description="Invalid token"
+      - DB3WNS4011733
       Date:
-      - Mon, 10 Nov 2014 10:21:43 GMT
+      - Mon, 27 Oct 2014 16:48:34 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version:
-  recorded_at: Mon, 10 Nov 2014 10:21:44 GMT
+  recorded_at: Mon, 27 Oct 2014 16:48:35 GMT
 recorded_with: VCR 2.9.3
