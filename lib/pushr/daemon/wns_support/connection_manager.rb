@@ -13,11 +13,10 @@ module Pushr
 
         def get(uri)
           key = "#{uri.scheme}://#{uri.host}"
-          if @pool.key? key
-            @pool[key]
-          else
+          unless @pool.key? key
             @pool[key] = ConnectionWns.new(@app_name, @access_token, @i)
           end
+          @pool[key]
         end
 
         def write(message)
